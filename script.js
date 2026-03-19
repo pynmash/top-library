@@ -1,3 +1,8 @@
+const bookDisplay = document.querySelector(".book-display");
+
+const readMark = "✅";
+const unreadMark = "📖";
+
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -19,9 +24,35 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(book);
 }
 
+function createCard(book) {
+  const card = document.createElement("div");
+  bookDisplay.appendChild(card);
+  card.classList.add("card");
+
+  const heading = document.createElement("h2");
+  heading.textContent = book.title;
+  card.appendChild(heading);
+  heading.classList.add("title");
+
+  const author = document.createElement("h3");
+  author.textContent = book.author;
+  card.appendChild(author);
+  heading.classList.add("author");
+
+  const pageNo = document.createElement("p");
+  pageNo.textContent = book.pages;
+  card.appendChild(pageNo);
+  pageNo.classList.add("page-num");
+
+  const readIndicator = document.createElement("p");
+  readIndicator.textContent = book.read ? readMark : unreadMark;
+  card.appendChild(readIndicator);
+  readIndicator.classList.add("read-indicator");
+}
+
 addBookToLibrary("World War Z", "Max Brooks", 342, false);
 addBookToLibrary("The Thursday Murder Club", "Richard Osman", 400, true);
 
 myLibrary.forEach((element) => {
-  console.log(element.describe());
+  createCard(element);
 });
