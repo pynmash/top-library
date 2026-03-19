@@ -25,7 +25,7 @@ body {
   border: none;
   border-radius: 20px;
   color: whitesmoke;
-  background-color: cornflowerblue;
+  background-color: #4353ff;
   font-size: 1rem;
   padding: 1rem 2rem;
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.4);
@@ -35,7 +35,7 @@ body {
 }
 
 .btn-add-book:hover {
-  opacity: 0.6;
+  opacity: 0.8;
   color: #333;
 }
 .book-display {
@@ -52,4 +52,77 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.modal-body {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+button {
+  padding: 7px 15px;
+  font-size: 14px;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background: #4353ff;
+  color: #fff;
+}
+
+.btn-close {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.form input {
+  border-radius: 5px;
 }

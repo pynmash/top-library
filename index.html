@@ -12,6 +12,36 @@
       <button class="btn-add-book" type="button">Add Book</button>
     </div>
     <div class="book-display"></div>
+
+    <!-- Modal -->
+    <div class="modal">
+      <div class="close-modal">&times;</div>
+      <div class="modal-title">Add a new book</div>
+      <div class="modal-body">
+        <form action="" class="form">
+          <div class="form-section">
+            <label for="title">Book Title:</label>
+            <input type="text" name="title" id="title" required />
+          </div>
+          <div class="form-section">
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" required />
+          </div>
+          <div class="form-section">
+            <label for="pages">No. Pages:</label>
+            <input type="number" name="pages" id="pages" />
+            <div class="form-section">
+              <label for="read">Read:</label>
+              <input type="checkbox" name="read" id="read" />
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn-submit">Add Book</button>
+            <button type="button" class="btn-close">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

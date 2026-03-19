@@ -1,27 +1,31 @@
 const bookDisplay = document.querySelector(".book-display");
 const btnAddBook = document.querySelector(".btn-add-book");
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector(".close-modal");
+const btnClose = document.querySelector(".btn-close");
+const form = document.querySelector(".form");
 
 const readMark = "✅";
 const unreadMark = "📖";
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(obj) {
   // the constructor...
   this.id = crypto.randomUUID();
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+  this.title = obj.title;
+  this.author = obj.author;
+  this.pages = obj.pages;
+  this.read = obj.read;
 
   this.describe = function () {
     return `${this.title} by ${this.author} is ${this.pages} pages long and you ${this.read ? "have" : "have not"} read it.`;
   };
 }
 
-function addBookToLibrary(title, author, pages, read) {
+function addBookToLibrary(obj) {
   // take params, create a book then store it in the array
-  const book = new Book(title, author, pages, read);
+  const book = new Book(obj);
   myLibrary.push(book);
 }
 
@@ -51,13 +55,52 @@ function createCard(book) {
   readIndicator.classList.add("read-indicator");
 }
 
-addBookToLibrary("World War Z", "Max Brooks", 342, false);
-addBookToLibrary("The Thursday Murder Club", "Richard Osman", 400, true);
-
-myLibrary.forEach((element) => {
-  createCard(element);
+addBookToLibrary({
+  title: "World War Z",
+  author: "Max Brooks",
+  pages: 342,
+  read: false,
+});
+addBookToLibrary({
+  title: "The Thursday Murder Club",
+  author: "Richard Osman",
+  pages: 400,
+  read: true,
 });
 
-btnAddBook.addEventListener("click", function (e) {
-  console.log("Button clicked!");
+function buildLibrary() {
+  while (bookDisplay.firstElementChild) {
+    bookDisplay.firstElementChild.remove();
+  }
+  myLibrary.forEach((element) => {
+    createCard(element);
+  });
+}
+
+function ModalClose() {
+  modal.style.display = "none";
+}
+
+buildLibrary();
+
+btnAddBook.addEventListener("click", function () {
+  modal.style.display = "flex";
+});
+
+closeModal.addEventListener("click", function () {
+  ModalClose();
+});
+
+btnClose.addEventListener("click", function () {
+  ModalClose();
+});
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const entries = Object.fromEntries(data.entries());
+  entries.read = entries.read == "on" ? true : false;
+  addBookToLibrary(entries);
+  ModalClose();
+  buildLibrary();
 });
