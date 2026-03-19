@@ -34,7 +34,7 @@ function createCard(book) {
   card.appendChild(heading);
   heading.classList.add("title");
 
-  const author = document.createElement("h3");
+  const author = document.createElement("p");
   author.textContent = book.author;
   card.appendChild(author);
   heading.classList.add("author");
