@@ -18,3 +18,10 @@ function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read);
   myLibrary.push(book);
 }
+
+addBookToLibrary("World War Z", "Max Brooks", 342, false);
+addBookToLibrary("The Thursday Murder Club", "Richard Osman", 400, true);
+
+myLibrary.forEach((element) => {
+  console.log(element.describe());
+});
