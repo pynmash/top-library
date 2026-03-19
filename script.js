@@ -1,4 +1,5 @@
 const bookDisplay = document.querySelector(".book-display");
+const btnAddBook = document.querySelector(".btn-add-book");
 
 const readMark = "✅";
 const unreadMark = "📖";
@@ -55,4 +56,8 @@ addBookToLibrary("The Thursday Murder Club", "Richard Osman", 400, true);
 
 myLibrary.forEach((element) => {
   createCard(element);
+});
+
+btnAddBook.addEventListener("click", function (e) {
+  console.log("Button clicked!");
 });
