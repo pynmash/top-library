@@ -40,7 +40,7 @@ function createCard(book) {
   heading.classList.add("author");
 
   const pageNo = document.createElement("p");
-  pageNo.textContent = book.pages;
+  pageNo.textContent = `${book.pages} pages`;
   card.appendChild(pageNo);
   pageNo.classList.add("page-num");
 
