@@ -16,6 +16,14 @@ bookDisplay.addEventListener("click", function (e) {
     const index = myLibrary.findIndex((book) => book.id === id);
     console.log(index);
     myLibrary.splice(index, 1);
+  } else if (e.target.classList.contains("read-toggle")) {
+    const id = e.target.getAttribute("data-id");
+    const index = myLibrary.findIndex((book) => book.id === id);
+    if (myLibrary[index].read === true) {
+      myLibrary[index].read = false;
+    } else {
+      myLibrary[index].read = true;
+    }
     buildLibrary();
   }
 });
