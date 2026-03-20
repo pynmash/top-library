@@ -37,7 +37,6 @@ function addBookToLibrary(obj) {
 
 function createCard(book) {
   const card = document.createElement("div");
-  bookDisplay.appendChild(card);
   card.classList.add("card");
 
   const heading = document.createElement("h2");
@@ -65,6 +64,8 @@ function createCard(book) {
   card.appendChild(deleteButton);
   deleteButton.classList.add("btn-submit", "delete-book");
   deleteButton.setAttribute("data-id", book.id);
+
+  bookDisplay.appendChild(card);
 }
 
 addBookToLibrary({
