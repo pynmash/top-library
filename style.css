@@ -141,10 +141,6 @@ button {
   background-color: rgba(255, 0, 0, 0.7);
   align-self: end;
   border-radius: 0px;
-
-  &:active {
-    background-color: green;
-  }
 }
 .card > .btn-submit:hover {
   background-color: rgba(255, 0, 0, 0.4);
