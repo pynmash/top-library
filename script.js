@@ -20,8 +20,8 @@ bookDisplay.addEventListener("click", function (e) {
     const id = e.target.getAttribute("data-id");
     const index = myLibrary.findIndex((book) => book.id === id);
     myLibrary[index].read = !myLibrary[index].read;
-    buildLibrary();
   }
+  buildLibrary();
 });
 
 function Book(obj) {
