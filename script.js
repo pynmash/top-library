@@ -48,7 +48,7 @@ function createCard(book) {
   const author = document.createElement("p");
   author.textContent = book.author;
   card.appendChild(author);
-  heading.classList.add("author");
+  author.classList.add("author");
 
   const pageNo = document.createElement("p");
   pageNo.textContent = `${book.pages} pages`;
