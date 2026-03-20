@@ -77,7 +77,7 @@ function buildLibrary() {
   });
 }
 
-function ModalClose() {
+function ModalClose(e) {
   modal.style.display = "none";
 }
 
@@ -102,5 +102,6 @@ form.addEventListener("submit", function (e) {
   entries.read = entries.read == "on" ? true : false;
   addBookToLibrary(entries);
   ModalClose();
+  e.target.reset();
   buildLibrary();
 });
