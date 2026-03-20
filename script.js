@@ -67,11 +67,21 @@ function createCard(book) {
   card.appendChild(readIndicator);
   readIndicator.classList.add("read-indicator");
 
+  const btnContainer = document.createElement("div");
+  btnContainer.classList.add("btn-container");
+  card.appendChild(btnContainer);
+
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete Book";
-  card.appendChild(deleteButton);
+  btnContainer.appendChild(deleteButton);
   deleteButton.classList.add("btn-submit", "delete-book");
   deleteButton.setAttribute("data-id", book.id);
+
+  const readToggle = document.createElement("button");
+  readToggle.textContent = `Mark as ${book.read ? "unread" : "read"}`;
+  btnContainer.appendChild(readToggle);
+  readToggle.classList.add("btn-submit", "read-toggle");
+  readToggle.setAttribute("data-id", book.id);
 
   bookDisplay.appendChild(card);
 }
