@@ -77,7 +77,7 @@ function buildLibrary() {
   });
 }
 
-function ModalClose(e) {
+function modalClose() {
   modal.style.display = "none";
 }
 
@@ -88,11 +88,11 @@ btnAddBook.addEventListener("click", function () {
 });
 
 closeModal.addEventListener("click", function () {
-  ModalClose();
+  modalClose();
 });
 
 btnClose.addEventListener("click", function () {
-  ModalClose();
+  modalClose();
 });
 
 form.addEventListener("submit", function (e) {
@@ -101,7 +101,7 @@ form.addEventListener("submit", function (e) {
   const entries = Object.fromEntries(data.entries());
   entries.read = entries.read == "on" ? true : false;
   addBookToLibrary(entries);
-  ModalClose();
+  modalClose();
   e.target.reset();
   buildLibrary();
 });
