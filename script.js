@@ -11,6 +11,16 @@ const unreadMark = "📖";
 
 const myLibrary = [];
 
+bookDisplay.addEventListener("click", function (e) {
+  if (e.target.classList.contains("delete-book")) {
+    const id = e.target.getAttribute("data-id");
+    const index = myLibrary.findIndex((book) => book.id === id);
+    console.log(index);
+    myLibrary.splice(index, 1);
+    buildLibrary();
+  }
+});
+
 function Book(obj) {
   // the constructor...
   this.id = crypto.randomUUID();
@@ -78,21 +88,6 @@ function buildLibrary() {
   }
   myLibrary.forEach((element) => {
     createCard(element);
-  });
-
-  getDeleteBtns();
-}
-
-function getDeleteBtns() {
-  deleteBookBtns = document.querySelectorAll(".delete-book");
-  deleteBookBtns.forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      const id = e.target.getAttribute("data-id");
-      const index = myLibrary.findIndex((book) => book.id === id);
-      console.log(index);
-      myLibrary.splice(index, 1);
-      buildLibrary();
-    });
   });
 }
 
