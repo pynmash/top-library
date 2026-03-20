@@ -60,7 +60,7 @@ body {
   font-size: 20px;
 }
 
-.card > *:not(button) {
+.card > *:not(.btn-container) {
   margin: 0 35px;
 }
 
@@ -137,11 +137,23 @@ button {
   border-radius: 5px;
 }
 
-.card > .btn-submit {
-  background-color: rgba(255, 0, 0, 0.7);
+.btn-container {
+  display: flex;
+  width: 100%;
   align-self: end;
+}
+
+.btn-container > .delete-book,
+.btn-container > .read-toggle {
+  background-color: rgba(255, 0, 0, 0.7);
+  flex: 1;
   border-radius: 0px;
 }
+
+.btn-container > .read-toggle {
+  background-color: rgba(100, 0, 225, 0.7);
+}
+
 .card > .btn-submit:hover {
   background-color: rgba(255, 0, 0, 0.4);
 }
