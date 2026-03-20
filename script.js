@@ -63,8 +63,7 @@ function createCard(book) {
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete Book";
   card.appendChild(deleteButton);
-  deleteButton.classList.add("btn-submit");
-  deleteButton.classList.add("delete-book");
+  deleteButton.classList.add("btn-submit", "delete-book");
   deleteButton.setAttribute("data-id", book.id);
 }
 
