@@ -4,7 +4,6 @@ const modal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
 const btnClose = document.querySelector(".btn-close");
 const form = document.querySelector(".form");
-let deleteBookBtns;
 
 const readMark = "✅";
 const unreadMark = "📖";
