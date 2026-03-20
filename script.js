@@ -49,6 +49,11 @@ function createCard(book) {
   readIndicator.textContent = book.read ? readMark : unreadMark;
   card.appendChild(readIndicator);
   readIndicator.classList.add("read-indicator");
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete Book";
+  card.appendChild(deleteButton);
+  deleteButton.classList.add("btn-submit");
 }
 
 addBookToLibrary({
