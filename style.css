@@ -17,7 +17,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
 }
 
 .btn-add-book {
@@ -27,7 +26,7 @@ body {
   color: whitesmoke;
   background-color: #4353ff;
   font-size: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1.2rem;
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.4);
   transition:
     opacity 500ms,
@@ -40,7 +39,7 @@ body {
 }
 .book-display {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   width: 100dvw;
   min-height: 200px;
@@ -51,10 +50,18 @@ body {
   align-items: start;
   border-radius: 20px;
   display: grid;
+  grid-template-rows: 45px repeat(4, 1fr);
+}
+
+.card > .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 20px;
 }
 
 .card > *:not(button) {
-  margin: 5px;
+  margin: 0 35px;
 }
 
 .modal {
@@ -134,6 +141,10 @@ button {
   background-color: rgba(255, 0, 0, 0.7);
   align-self: end;
   border-radius: 0px;
+
+  &:active {
+    background-color: green;
+  }
 }
 .card > .btn-submit:hover {
   background-color: rgba(255, 0, 0, 0.4);
