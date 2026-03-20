@@ -46,12 +46,15 @@ body {
   min-height: 200px;
 }
 .card {
-  padding-left: 30px;
-  border: 1px solid black;
+  overflow: hidden;
+  border: 3px solid black;
+  align-items: start;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+}
+
+.card > *:not(button) {
+  margin: 5px;
 }
 
 .modal {
@@ -125,4 +128,13 @@ button {
 
 .form input {
   border-radius: 5px;
+}
+
+.card > .btn-submit {
+  background-color: rgba(255, 0, 0, 0.7);
+  align-self: end;
+  border-radius: 0px;
+}
+.card > .btn-submit:hover {
+  background-color: rgba(255, 0, 0, 0.4);
 }

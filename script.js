@@ -4,6 +4,7 @@ const modal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
 const btnClose = document.querySelector(".btn-close");
 const form = document.querySelector(".form");
+let deleteBookBtns;
 
 const readMark = "✅";
 const unreadMark = "📖";
@@ -54,6 +55,8 @@ function createCard(book) {
   deleteButton.textContent = "Delete Book";
   card.appendChild(deleteButton);
   deleteButton.classList.add("btn-submit");
+  deleteButton.classList.add("delete-book");
+  deleteButton.setAttribute("data-id", book.id);
 }
 
 addBookToLibrary({
@@ -75,6 +78,20 @@ function buildLibrary() {
   }
   myLibrary.forEach((element) => {
     createCard(element);
+  });
+
+  getDeleteBtns();
+}
+
+function getDeleteBtns() {
+  deleteBookBtns = document.querySelectorAll(".delete-book");
+  deleteBookBtns.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      const id = e.target.getAttribute("data-id");
+      const index = myLibrary.indexOf(id);
+      myLibrary.splice(index, 1);
+      buildLibrary();
+    });
   });
 }
 
