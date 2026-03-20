@@ -17,10 +17,6 @@ function Book(obj) {
   this.author = obj.author;
   this.pages = obj.pages;
   this.read = obj.read;
-
-  this.describe = function () {
-    return `${this.title} by ${this.author} is ${this.pages} pages long and you ${this.read ? "have" : "have not"} read it.`;
-  };
 }
 
 function addBookToLibrary(obj) {
