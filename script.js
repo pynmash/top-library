@@ -35,10 +35,11 @@ class Book {
   }
 }
 
-function addBookToLibrary(obj) {
-  // take params, create a book then store it in the array
-  const book = new Book(obj);
-  myLibrary.push(book);
+class Library {
+  constructor() {
+    this.library = [];
+  }
+
 }
 
 function createCard(book) {
