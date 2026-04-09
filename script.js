@@ -24,13 +24,15 @@ bookDisplay.addEventListener("click", function (e) {
   buildLibrary();
 });
 
-function Book(obj) {
-  // the constructor...
-  this.id = crypto.randomUUID();
-  this.title = obj.title;
-  this.author = obj.author;
-  this.pages = obj.pages;
-  this.read = obj.read;
+class Book {
+  constructor(obj) {
+    // the constructor...
+    this.id = crypto.randomUUID();
+    this.title = obj.title;
+    this.author = obj.author;
+    this.pages = obj.pages;
+    this.read = obj.read;
+  }
 }
 
 function addBookToLibrary(obj) {
