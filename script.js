@@ -103,6 +103,10 @@ addBookToLibrary({
   read: true,
 });
 
+class Display {
+  pass;
+}
+
 function buildLibrary() {
   while (bookDisplay.firstElementChild) {
     bookDisplay.firstElementChild.remove();
