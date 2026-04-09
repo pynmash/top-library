@@ -40,6 +40,11 @@ class Library {
     this.library = [];
   }
 
+  addBookToLibrary(obj) {
+    // take params, create a book then store it in the array
+    const book = new Book(obj);
+    myLibrary.push(book);
+  }
 }
 
 function createCard(book) {
