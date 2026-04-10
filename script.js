@@ -141,18 +141,6 @@ class Display {
 
 // buildLibrary();
 
-btnAddBook.addEventListener("click", function () {
-  modal.style.display = "flex";
-});
-
-closeModal.addEventListener("click", function () {
-  modalClose();
-});
-
-btnClose.addEventListener("click", function () {
-  modalClose();
-});
-
 const myLibrary = new Library();
 const display = new Display();
 
