@@ -8,8 +8,6 @@ const form = document.querySelector(".form");
 const readMark = "✅";
 const unreadMark = "📖";
 
-const myLibrary = [];
-
 bookDisplay.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete-book")) {
     const id = e.target.getAttribute("data-id");
@@ -43,7 +41,7 @@ class Library {
   addBookToLibrary(obj) {
     // take params, create a book then store it in the array
     const book = new Book(obj);
-    myLibrary.push(book);
+    this.library.push(book);
   }
 }
 
@@ -90,19 +88,6 @@ function createCard(book) {
   bookDisplay.appendChild(card);
 }
 
-addBookToLibrary({
-  title: "World War Z",
-  author: "Max Brooks",
-  pages: 342,
-  read: false,
-});
-addBookToLibrary({
-  title: "The Thursday Murder Club",
-  author: "Richard Osman",
-  pages: 400,
-  read: true,
-});
-
 class Display {
   pass;
 }
@@ -139,8 +124,23 @@ form.addEventListener("submit", function (e) {
   const data = new FormData(e.target);
   const entries = Object.fromEntries(data.entries());
   entries.read = entries.read == "on" ? true : false;
-  addBookToLibrary(entries);
+  myLibrary.addBookToLibrary(entries);
   modalClose();
   e.target.reset();
   buildLibrary();
+
+const myLibrary = new Library();
+
+myLibrary.addBookToLibrary({
+  title: "World War Z",
+  author: "Max Brooks",
+  pages: 342,
+  read: false,
 });
+myLibrary.addBookToLibrary({
+  title: "The Thursday Murder Club",
+  author: "Richard Osman",
+  pages: 400,
+  read: true,
+});
+
