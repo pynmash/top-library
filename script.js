@@ -19,7 +19,7 @@ bookDisplay.addEventListener("click", function (e) {
     const index = myLibrary.findIndex((book) => book.id === id);
     myLibrary[index].read = !myLibrary[index].read;
   }
-  buildLibrary();
+  display.buildLibrary();
 });
 
 class Book {
@@ -42,6 +42,17 @@ class Library {
     // take params, create a book then store it in the array
     const book = new Book(obj);
     this.library.push(book);
+  }
+}
+
+class Display {
+  buildLibrary() {
+    while (bookDisplay.firstElementChild) {
+      bookDisplay.firstElementChild.remove();
+    }
+    myLibrary.library.forEach((element) => {
+      createCard(element);
+    });
   }
 }
 
@@ -88,24 +99,11 @@ function createCard(book) {
   bookDisplay.appendChild(card);
 }
 
-class Display {
-  pass;
-}
-
-function buildLibrary() {
-  while (bookDisplay.firstElementChild) {
-    bookDisplay.firstElementChild.remove();
-  }
-  myLibrary.forEach((element) => {
-    createCard(element);
-  });
-}
-
 function modalClose() {
   modal.style.display = "none";
 }
 
-buildLibrary();
+// buildLibrary();
 
 btnAddBook.addEventListener("click", function () {
   modal.style.display = "flex";
@@ -127,9 +125,11 @@ form.addEventListener("submit", function (e) {
   myLibrary.addBookToLibrary(entries);
   modalClose();
   e.target.reset();
-  buildLibrary();
+  display.buildLibrary();
+});
 
 const myLibrary = new Library();
+const display = new Display();
 
 myLibrary.addBookToLibrary({
   title: "World War Z",
@@ -144,3 +144,4 @@ myLibrary.addBookToLibrary({
   read: true,
 });
 
+display.buildLibrary();
