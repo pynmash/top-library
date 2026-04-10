@@ -18,6 +18,20 @@ class Book {
 class Library {
   constructor() {
     this.library = [];
+
+    this.addBookToLibrary({
+      title: "World War Z",
+      author: "Max Brooks",
+      pages: 342,
+      read: false,
+    });
+    this.addBookToLibrary({
+      title: "The Thursday Murder Club",
+      author: "Richard Osman",
+      pages: 400,
+      read: true,
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       const data = new FormData(e.target);
@@ -141,18 +155,5 @@ btnClose.addEventListener("click", function () {
 
 const myLibrary = new Library();
 const display = new Display();
-
-myLibrary.addBookToLibrary({
-  title: "World War Z",
-  author: "Max Brooks",
-  pages: 342,
-  read: false,
-});
-myLibrary.addBookToLibrary({
-  title: "The Thursday Murder Club",
-  author: "Richard Osman",
-  pages: 400,
-  read: true,
-});
 
 display.buildLibrary();
