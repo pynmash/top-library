@@ -1,26 +1,8 @@
-const bookDisplay = document.querySelector(".book-display");
 const btnAddBook = document.querySelector(".btn-add-book");
 const modal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
 const btnClose = document.querySelector(".btn-close");
 const form = document.querySelector(".form");
-
-const readMark = "✅";
-const unreadMark = "📖";
-
-bookDisplay.addEventListener("click", function (e) {
-  if (e.target.classList.contains("delete-book")) {
-    const id = e.target.getAttribute("data-id");
-    const index = myLibrary.findIndex((book) => book.id === id);
-    console.log(index);
-    myLibrary.splice(index, 1);
-  } else if (e.target.classList.contains("read-toggle")) {
-    const id = e.target.getAttribute("data-id");
-    const index = myLibrary.findIndex((book) => book.id === id);
-    myLibrary[index].read = !myLibrary[index].read;
-  }
-  display.buildLibrary();
-});
 
 class Book {
   constructor(obj) {
@@ -46,61 +28,91 @@ class Library {
 }
 
 class Display {
-  buildLibrary() {
-    while (bookDisplay.firstElementChild) {
-      bookDisplay.firstElementChild.remove();
-    }
-    myLibrary.library.forEach((element) => {
-      createCard(element);
+  constructor() {
+    btnAddBook.addEventListener("click", function () {
+      modal.style.display = "flex";
+    });
+
+    closeModal.addEventListener("click", function () {
+      modalClose();
+    });
+
+    btnClose.addEventListener("click", function () {
+      display.modalClose();
+    });
+    this.bookDisplay = document.querySelector(".book-display");
+    this.bookDisplay.addEventListener("click", function (e) {
+      if (e.target.classList.contains("delete-book")) {
+        const id = e.target.getAttribute("data-id");
+        const index = myLibrary.library.findIndex((book) => book.id === id);
+        console.log(index);
+        myLibrary.library.splice(index, 1);
+      } else if (e.target.classList.contains("read-toggle")) {
+        const id = e.target.getAttribute("data-id");
+        const index = myLibrary.library.findIndex((book) => book.id === id);
+        myLibrary.library[index].read = !myLibrary.library[index].read;
+      }
+      display.buildLibrary();
     });
   }
-}
 
-function createCard(book) {
-  const card = document.createElement("div");
-  card.classList.add("card");
+  buildLibrary() {
+    while (display.bookDisplay.firstElementChild) {
+      display.bookDisplay.firstElementChild.remove();
+    }
+    myLibrary.library.forEach((element) => {
+      this.createCard(element);
+    });
+  }
 
-  const heading = document.createElement("h2");
-  heading.textContent = book.title;
-  card.appendChild(heading);
-  heading.classList.add("title");
+  modalClose() {
+    modal.style.display = "none";
+  }
 
-  const author = document.createElement("p");
-  author.textContent = book.author;
-  card.appendChild(author);
-  author.classList.add("author");
+  createCard(book) {
+    const readMark = "✅";
+    const unreadMark = "📖";
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-  const pageNo = document.createElement("p");
-  pageNo.textContent = `${book.pages} pages`;
-  card.appendChild(pageNo);
-  pageNo.classList.add("page-num");
+    const heading = document.createElement("h2");
+    heading.textContent = book.title;
+    card.appendChild(heading);
+    heading.classList.add("title");
 
-  const readIndicator = document.createElement("p");
-  readIndicator.textContent = book.read ? readMark : unreadMark;
-  card.appendChild(readIndicator);
-  readIndicator.classList.add("read-indicator");
+    const author = document.createElement("p");
+    author.textContent = book.author;
+    card.appendChild(author);
+    author.classList.add("author");
 
-  const btnContainer = document.createElement("div");
-  btnContainer.classList.add("btn-container");
-  card.appendChild(btnContainer);
+    const pageNo = document.createElement("p");
+    pageNo.textContent = `${book.pages} pages`;
+    card.appendChild(pageNo);
+    pageNo.classList.add("page-num");
 
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Delete Book";
-  btnContainer.appendChild(deleteButton);
-  deleteButton.classList.add("btn-submit", "delete-book");
-  deleteButton.setAttribute("data-id", book.id);
+    const readIndicator = document.createElement("p");
+    readIndicator.textContent = book.read ? readMark : unreadMark;
+    card.appendChild(readIndicator);
+    readIndicator.classList.add("read-indicator");
 
-  const readToggle = document.createElement("button");
-  readToggle.textContent = `Mark as ${book.read ? "unread" : "read"}`;
-  btnContainer.appendChild(readToggle);
-  readToggle.classList.add("btn-submit", "read-toggle");
-  readToggle.setAttribute("data-id", book.id);
+    const btnContainer = document.createElement("div");
+    btnContainer.classList.add("btn-container");
+    card.appendChild(btnContainer);
 
-  bookDisplay.appendChild(card);
-}
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete Book";
+    btnContainer.appendChild(deleteButton);
+    deleteButton.classList.add("btn-submit", "delete-book");
+    deleteButton.setAttribute("data-id", book.id);
 
-function modalClose() {
-  modal.style.display = "none";
+    const readToggle = document.createElement("button");
+    readToggle.textContent = `Mark as ${book.read ? "unread" : "read"}`;
+    btnContainer.appendChild(readToggle);
+    readToggle.classList.add("btn-submit", "read-toggle");
+    readToggle.setAttribute("data-id", book.id);
+
+    display.bookDisplay.appendChild(card);
+  }
 }
 
 // buildLibrary();
