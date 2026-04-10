@@ -18,6 +18,16 @@ class Book {
 class Library {
   constructor() {
     this.library = [];
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const entries = Object.fromEntries(data.entries());
+      entries.read = entries.read == "on" ? true : false;
+      myLibrary.addBookToLibrary(entries);
+      display.modalClose();
+      e.target.reset();
+      display.buildLibrary();
+    });
   }
 
   addBookToLibrary(obj) {
@@ -127,17 +137,6 @@ closeModal.addEventListener("click", function () {
 
 btnClose.addEventListener("click", function () {
   modalClose();
-});
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  const entries = Object.fromEntries(data.entries());
-  entries.read = entries.read == "on" ? true : false;
-  myLibrary.addBookToLibrary(entries);
-  modalClose();
-  e.target.reset();
-  display.buildLibrary();
 });
 
 const myLibrary = new Library();
