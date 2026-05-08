@@ -3,6 +3,12 @@ const modal = document.querySelector(".modal");
 const closeModal = document.querySelector(".close-modal");
 const btnClose = document.querySelector(".btn-close");
 const form = document.querySelector(".form");
+const formTitleInput = document.querySelector("#title");
+const formTitleError = document.querySelector("#title + div.error");
+const formAuthorInput = document.querySelector("#author");
+const formAuthorError = document.querySelector("#author + div.error");
+const formPagesInput = document.querySelector("#pages");
+const formPagesError = document.querySelector("#pages + div.error");
 
 class Book {
   constructor(obj) {
@@ -32,16 +38,75 @@ class Library {
       read: true,
     });
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const data = new FormData(e.target);
-      const entries = Object.fromEntries(data.entries());
-      entries.read = entries.read == "on" ? true : false;
-      myLibrary.addBookToLibrary(entries);
-      display.modalClose();
-      e.target.reset();
-      display.buildLibrary();
+    formTitleInput.addEventListener("input", () => {
+      if (formTitleInput.validity.valid) {
+        formTitleError.textContent = "";
+        formTitleError.className = "error";
+      } else {
+        showTextError(formTitleInput, formTitleError);
+      }
     });
+
+    formAuthorInput.addEventListener("input", () => {
+      if (formAuthorInput.validity.valid) {
+        formAuthorError.textContent = "";
+        formAuthorError.className = "error";
+      } else {
+        showTextError(formAuthorInput, formAuthorError);
+      }
+    });
+
+    formPagesInput.addEventListener("input", () => {
+      if (formPagesInput.validity.valid) {
+        formPagesError.textContent = "";
+        formAuthorError.className = "error";
+      } else {
+        showPagesError();
+      }
+    });
+
+    form.addEventListener("submit", function (e) {
+      if (!formTitleInput.validity.valid) {
+        showTextError(formTitleInput, formTitleError);
+        e.preventDefault();
+      } else if (!formAuthorInput.validity.valid) {
+        showTextError(formAuthorInput, formAuthorError);
+        e.preventDefault();
+      } else if (!formPagesInput.validity.valid) {
+        showPagesError();
+      } else {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const entries = Object.fromEntries(data.entries());
+        entries.read = entries.read == "on" ? true : false;
+        myLibrary.addBookToLibrary(entries);
+        display.modalClose();
+        e.target.reset();
+        display.buildLibrary();
+      }
+    });
+
+    function showTextError(input, error) {
+      // Title errors
+      if (input.validity.valueMissing) {
+        error.textContent = "You need to enter a title.";
+      } else if (input.validity.tooShort) {
+        error.textContent = `Title should be at least ${input.minLength} characters; you entered ${input.value.length}.`;
+      }
+      input.classname = "error active";
+    }
+
+    function showPagesError() {
+      if (
+        formPagesInput.validity.rangeUnderflow
+        // formPagesInput.validity.rangeUnderflow ||
+        // formPagesInput.validity.valueMissing
+      ) {
+        formPagesError.textContent =
+          "Number of pages should be a number greater than Zero.";
+      }
+      formPagesError.classname = "error active";
+    }
   }
 
   addBookToLibrary(obj) {
@@ -77,6 +142,15 @@ class Display {
         myLibrary.library[index].read = !myLibrary.library[index].read;
       }
       display.buildLibrary();
+    });
+
+    const newBookTitle = document.querySelector("#title");
+    newBookTitle.addEventListener("input", (e) => {
+      if (newBookTitle.validity.checkValidity) {
+        newBookTitle.setCustomValidity("Title must be at least 2 characters");
+      } else {
+        newBookTitle.setCustomValidity("");
+      }
     });
   }
 
@@ -145,3 +219,5 @@ const myLibrary = new Library();
 const display = new Display();
 
 display.buildLibrary();
+
+modal.style.display = "flex"; // Remove this to hide modal on load
